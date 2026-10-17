@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>He Xinlong | Resume</title>
+<meta name="description" content="Resume of He Xinlong, Java backend developer. Personal project EchoLab: an AI assistant that never lets the AI do the math.">
+<link rel="alternate" hreflang="ja" href="../ja/">
+<link rel="alternate" hreflang="zh-CN" href="../zh/">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<div class="layout">
+<div class="topbar"><strong>He Xinlong · Resume</strong><button id="menu-btn" type="button" aria-label="Contents"><svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="2"/></svg></button></div>
+
+<nav class="side" aria-label="Contents">
+  <div class="brand">He Xinlong</div>
+  <div class="brand-sub">Java backend developer</div>
+  <div class="group">Contents</div>
+  <ul>
+    <li><a href="#profile">Overview</a></li>
+    <li><a href="#echolab">Project: EchoLab</a></li>
+    <li><a href="#takeout">Project: food ordering</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#campus">Campus activities</a></li>
+    <li><a href="#about">About me</a></li>
+  </ul>
+  <div class="controls">
+    <a href="../ja/" lang="ja">日本語</a><a class="on" href="./">English</a><a href="../zh/" lang="zh-CN">中文</a>
+    <button id="theme-btn" type="button">Light / Dark</button>
+  </div>
+</nav>
+
+<main>
+  <section class="card" id="profile">
+    <div class="hero">
+      <div>
+        <h1>He Xinlong<span class="romaji" lang="zh-CN">何鑫龙</span></h1>
+        <p class="role">Java Backend Developer (aiming for Japan-facing development)</p>
+        <ul class="facts">
+          <li>B.Eng. in Software Engineering, Xinjiang University (Sep 2022 – Jun 2026)</li>
+          <li>Japanese JLPT N3 (studying for N2) · English CET-4</li>
+        </ul>
+      </div>
+      <div class="links">
+        <div><span class="k">Email</span><a href="mailto:2595664754@qq.com">2595664754@qq.com</a></div>
+        <div><span class="k">GitHub</span><a href="https://github.com/hexinlong9981">hexinlong9981</a></div>
+        <div><span class="k">Project</span><a href="https://github.com/hexinlong9981/echolab">EchoLab</a></div>
+        <div><span class="k">Demo</span><a href="https://echolab-web.echolab-web.workers.dev/">EchoLab web UI</a></div>
+      </div>
+    </div>
+    <p class="summary">
+      A backend developer working mainly in Java. In my personal project EchoLab, I designed, built, tested and published on my own
+      an AI assistant in which only programs compute numbers and the AI only understands and explains. Quality is backed by
+      architecture decision records (ADRs), automated tests and CI. I want to bring this focus on reliability and documentation
+      to real work in Japan-facing software development.
+    </p>
+  </section>
+
+  <section class="card" id="echolab">
+    <h2>Projects</h2>
+    <div class="item">
+      <div class="item-head">
+        <h3>EchoLab — an AI assistant that never lets the AI do the math</h3>
+        <span class="period">Oct 2026 – present · personal project</span>
+      </div>
+      <p class="meta">
+        Code: <a href="https://github.com/hexinlong9981/echolab">github.com/hexinlong9981/echolab</a> (MIT) ·
+        Docs: <a href="https://hexinlong9981.github.io/echolab/en/">user guide (EN / JA / ZH)</a> ·
+        Demo: <a href="https://echolab-web.echolab-web.workers.dev/">web UI</a>
+      </p>
+      <p>
+        An unofficial fan project built around character building in the game Wuthering Waves. It answers questions where one wrong
+        number destroys trust: damage comparisons, scoring, gacha probabilities. Because LLMs tend to invent plausible numbers, it is
+        designed so that every number in an answer comes from a calculation service and can be traced to its source.
+      </p>
+      <ul class="tags">
+        <li>Java 21</li><li>Spring Boot</li><li>Spring AI (MCP)</li><li>Python</li><li>React</li><li>TypeScript</li>
+        <li>Claude / Gemini API</li><li>Docker</li><li>GitHub Actions</li><li>Cloud Run</li><li>Cloudflare Workers</li>
+      </ul>
+      <ul class="points">
+        <li><span class="point-title">Numbers only from tools:</span> the LLM writes an answer template with placeholders, and a renderer fills in values by source ID. Any number without a source sends the answer back for a rewrite. Differences and ratios are also computed by tools.</li>
+        <li><span class="point-title">Java calculation service:</span> built calc-engine with Java 21, Spring Boot and Spring AI. As an MCP server it provides expected damage, scoring and gacha probabilities (exact and Monte Carlo).</li>
+        <li><span class="point-title">Safe tool calls:</span> a deny-by-default gateway exposes only declared tools and validates inputs with JSON Schema; external strings are treated as data, not instructions. Screenshot OCR reads only the numeric fields a template declares, and a prompt-injection eval set runs in CI on every change.</li>
+        <li><span class="point-title">Extensible structure:</span> a domain-independent core is separated from "domain packs". Two packs added later, a mortgage calculator and a spoiler-safe lore guide for Mushoku Tensei, required no changes to the core, and CI checks this.</li>
+        <li><span class="point-title">Testing and quality:</span> the same golden cases are checked in three places: Java, a Python reference implementation and end-to-end tests over MCP. JUnit, jqwik (property tests), ArchUnit, Error Prone, JaCoCo (90%+ line coverage), pytest and ruff run on GitHub Actions.</li>
+        <li><span class="point-title">Cost control:</span> the cost of every LLM call is computed from a price table and logged, with caps of USD 1 per day and USD 10 per month; past the cap, the LLM is not called.</li>
+        <li><span class="point-title">Web UI and deployment:</span> trace replay and an evaluation dashboard in React + TypeScript + Vite, served as static files on Cloudflare Workers; a demo server runs on the Google Cloud Run free tier. The UI and docs are available in Japanese, English and Chinese.</li>
+        <li><span class="point-title">Documentation:</span> 14 ADRs and an architecture document record the reasons and trade-offs behind each choice. I use AI coding tools such as Claude Code and verify the results through tests and code review.</li>
+      </ul>
+    </div>
+
+    <div class="item" id="takeout">
+      <div class="item-head">
+        <h3>Food ordering and admin system (course project)</h3>
+        <span class="period">2nd-year summer term · team lead</span>
+      </div>
+      <p class="meta">Frontend code: <a href="https://github.com/hexinlong9981/fast_bite">github.com/hexinlong9981/fast_bite</a></p>
+      <p>
+        A food delivery platform for restaurants. The admin system manages staff, dishes and set meals; the WeChat mini program lets
+        users browse dishes, add them to a cart and place orders. As team lead I covered requirements, design, coding, testing and deployment.
+      </p>
+      <ul class="tags">
+        <li>Spring Boot</li><li>MyBatis</li><li>MySQL</li><li>Redis</li><li>Nginx</li><li>WebSocket</li><li>JWT</li><li>Vue</li><li>uni-app</li>
+      </ul>
+      <ul class="points">
+        <li>Implemented login with JWT, keeping the current user in a custom interceptor and ThreadLocal.</li>
+        <li>Cached frequently read dish data with Redis and Spring Cache to reduce database queries.</li>
+        <li>Built new-order alerts and reminders with WebSocket, and automatic cancellation of unpaid orders with Spring Task.</li>
+        <li>Served static files and a reverse proxy with Nginx; managed the project with Maven multi-module builds and Git.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card" id="skills">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>Java backend</dt><dd>Java, Spring, Spring MVC, Spring Boot, MyBatis / MyBatis-Plus; basics of Spring Cloud and Spring AI</dd>
+      <dt>Databases</dt><dd>MySQL (SQL, indexes), Redis (caching)</dd>
+      <dt>Testing and quality</dt><dd>JUnit, jqwik, ArchUnit, JaCoCo, Error Prone, pytest; golden cases and end-to-end tests</dd>
+      <dt>Deployment</dt><dd>Linux basics, Nginx, Docker, GitHub Actions, Google Cloud Run, Cloudflare Workers</dd>
+      <dt>Other languages, frontend</dt><dd>Python; HTML / CSS / JavaScript, TypeScript, Vue 3, React</dd>
+      <dt>AI applications</dt><dd>Claude / Gemini API, MCP (Model Context Protocol), evaluation design for LLM answers</dd>
+      <dt>Tools</dt><dd>Git / GitHub, Maven, Gradle, Claude Code</dd>
+      <dt>Languages</dt><dd>Chinese (native), Japanese JLPT N3 (studying for N2), English CET-4 (reads technical documents)</dd>
+    </dl>
+  </section>
+
+  <section class="card" id="education">
+    <h2>Education</h2>
+    <div class="item-head">
+      <h3>Xinjiang University — B.Eng. in Software Engineering</h3>
+      <span class="period">Sep 2022 – Jun 2026</span>
+    </div>
+    <p class="meta">Main courses: data structures, operating systems, computer networks, network and information security, introduction to software engineering, discrete mathematics, calculus, linear algebra, probability and statistics</p>
+  </section>
+
+  <section class="card" id="campus">
+    <h2>Campus activities</h2>
+    <ul class="points">
+      <li>Led a team as project lead in the 2nd-year summer term to complete the food ordering and admin system.</li>
+      <li>Vice president of the university table tennis club; organized many club events.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="about">
+    <h2>About me</h2>
+    <ul class="points">
+      <li>I enjoy building things, learn new technologies on my own, and can take a project from zero to public release.</li>
+      <li>I care about reliability: first ask why a result can be trusted, then explain it with tests and documentation.</li>
+      <li>Cheerful and quick to adapt to new environments; I love ball sports and keep fit.</li>
+      <li>Japanese anime and games have been part of my life since childhood. I want to work and live in Japan and keep studying Japanese.</li>
+    </ul>
+  </section>
+
+  <footer>Last updated: 2026-10-17 · Published with GitHub Pages</footer>
+</main>
+</div>
+</body>
+</html>

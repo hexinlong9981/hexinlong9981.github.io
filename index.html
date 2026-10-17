@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>He Xinlong | Resume</title>
+<meta name="description" content="何鑫龍 / He Xinlong — 履歴書・Resume・简历">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  // 浏览器语言为日语 → ja，中文 → zh，其余 → en
+  (function () {
+    var l = (navigator.languages && navigator.languages[0] || navigator.language || "").toLowerCase();
+    var to = l.indexOf("ja") === 0 ? "ja/" : l.indexOf("zh") === 0 ? "zh/" : "en/";
+    if (location.search.indexOf("stay") < 0) location.replace(to);
+  })();
+</script>
+<style>
+  .pick { max-width: 480px; margin: 15vh auto; padding: 0 16px; text-align: center; }
+  .pick a { display: block; margin: 10px 0; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); }
+</style>
+</head>
+<body>
+<div class="pick">
+  <h1>He Xinlong</h1>
+  <a href="ja/" lang="ja">日本語（履歴書）</a>
+  <a href="en/" lang="en">English (Resume)</a>
+  <a href="zh/" lang="zh-CN">中文（简历）</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>何鑫龙 | 简历</title>
+<meta name="description" content="何鑫龙的简历：Java 后端开发（对日方向）。个人项目 EchoLab——不让 AI 做计算的 AI 助手。">
+<link rel="alternate" hreflang="ja" href="../ja/">
+<link rel="alternate" hreflang="en" href="../en/">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/site.js"></script>
+</head>
+<body>
+<div class="layout">
+<div class="topbar"><strong>何鑫龙 · 简历</strong><button id="menu-btn" type="button" aria-label="目录"><svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="2"/></svg></button></div>
+
+<nav class="side" aria-label="目录">
+  <div class="brand">何鑫龙</div>
+  <div class="brand-sub">Java 后端开发（对日方向）</div>
+  <div class="group">目录</div>
+  <ul>
+    <li><a href="#profile">个人概要</a></li>
+    <li><a href="#echolab">项目：EchoLab</a></li>
+    <li><a href="#takeout">项目：外卖点单系统</a></li>
+    <li><a href="#skills">专业技能</a></li>
+    <li><a href="#education">教育背景</a></li>
+    <li><a href="#campus">校园经历</a></li>
+    <li><a href="#about">自我评价</a></li>
+  </ul>
+  <div class="controls">
+    <a href="../ja/" lang="ja">日本語</a><a href="../en/" lang="en">English</a><a class="on" href="./">中文</a>
+    <button id="theme-btn" type="button">明 / 暗</button>
+  </div>
+</nav>
+
+<main>
+  <section class="card" id="profile">
+    <div class="hero">
+      <div>
+        <h1>何鑫龙<span class="romaji">He Xinlong</span></h1>
+        <p class="role">Java 后端开发工程师（对日方向）</p>
+        <ul class="facts">
+          <li>新疆大学 软件工程 本科（2022.09 – 2026.06）</li>
+          <li>日语 N3（备考 N2）· 英语 CET-4</li>
+        </ul>
+      </div>
+      <div class="links">
+        <div><span class="k">邮箱</span><a href="mailto:2595664754@qq.com">2595664754@qq.com</a></div>
+        <div><span class="k">GitHub</span><a href="https://github.com/hexinlong9981">hexinlong9981</a></div>
+        <div><span class="k">作品</span><a href="https://github.com/hexinlong9981/echolab">EchoLab</a></div>
+        <div><span class="k">演示</span><a href="https://echolab-web.echolab-web.workers.dev/">EchoLab 网页界面</a></div>
+      </div>
+    </div>
+    <p class="summary">
+      以 Java 为主的后端开发者。在个人项目 EchoLab 中，从设计、实现、测试到发布，独立完成了一个
+      “数值只由程序计算、AI 只负责理解与说明”的 AI 助手，并用设计决策记录（ADR）、自动化测试和 CI
+      保证质量。希望在对日软件开发中，把这种重视可靠性与文档的做法用到实际业务中。
+    </p>
+  </section>
+
+  <section class="card" id="echolab">
+    <h2>项目经历</h2>
+    <div class="item">
+      <div class="item-head">
+        <h3>EchoLab —— 不让 AI 做计算的 AI 助手</h3>
+        <span class="period">2026.10 – 至今 · 个人项目</span>
+      </div>
+      <p class="meta">
+        代码：<a href="https://github.com/hexinlong9981/echolab">github.com/hexinlong9981/echolab</a>（MIT）·
+        说明：<a href="https://hexinlong9981.github.io/echolab/zh/">使用说明（中・日・英）</a> ·
+        演示：<a href="https://echolab-web.echolab-web.workers.dev/">网页界面</a>
+      </p>
+      <p>
+        以游戏《鸣潮》的角色培养为题材（非官方粉丝作品），回答伤害比较、评分、抽卡概率等“错一个数字就失去信任”的问题。
+        LLM 容易编造看似合理的数值，本项目从设计上保证回答中的每个数值都来自计算服务，并能查到出处。
+      </p>
+      <ul class="tags">
+        <li>Java 21</li><li>Spring Boot</li><li>Spring AI（MCP）</li><li>Python</li><li>React</li><li>TypeScript</li>
+        <li>Claude / Gemini API</li><li>Docker</li><li>GitHub Actions</li><li>Cloud Run</li><li>Cloudflare Workers</li>
+      </ul>
+      <ul class="points">
+        <li><span class="point-title">数值只来自工具：</span>LLM 只写带占位符的回答模板，数值由渲染器按出处 ID 填入；回答中若出现没有出处的数字就退回重写。差值、比值也由比较工具计算。</li>
+        <li><span class="point-title">Java 计算服务：</span>用 Java 21 + Spring Boot + Spring AI 实现 calc-engine，作为 MCP 服务器提供期望伤害、评分、抽卡概率（精确解与蒙特卡洛法）等计算。</li>
+        <li><span class="point-title">安全的工具调用：</span>网关只放行配置中声明的工具（默认拒绝），用 JSON Schema 校验输入；外部字符串当作数据而不是指令。截图 OCR 只读取模板声明的数值字段，并用提示词注入评估集在 CI 中每次检查。</li>
+        <li><span class="point-title">可扩展的结构：</span>把领域无关的核心与“领域包”分离。之后加入的房贷计算、《无职转生》设定考证（按用户进度防剧透）两个领域包都没有修改核心代码，CI 自动检查这一点。</li>
+        <li><span class="point-title">测试与质量：</span>同一组黄金用例在 Java、Python 参考实现、经由 MCP 的端到端测试三处核对。使用 JUnit、jqwik（性质测试）、ArchUnit、Error Prone、JaCoCo（行覆盖率 90% 以上）、pytest、ruff，在 GitHub Actions 中运行。</li>
+        <li><span class="point-title">成本控制：</span>按价格表计算每次 LLM 调用的费用并记账，设置每日 1 美元、每月 10 美元的上限，超过后不再调用。</li>
+        <li><span class="point-title">网页界面与发布：</span>用 React + TypeScript + Vite 做执行轨迹回放与评估看板，以静态文件发布到 Cloudflare Workers；演示服务器部署在 Google Cloud Run 的免费额度内。界面与文档均支持中・日・英三种语言。</li>
+        <li><span class="point-title">文档：</span>写了 14 篇设计决策记录（ADR）和架构说明，记录每个选择的理由与取舍。开发中使用 Claude Code 等 AI 编程工具，并通过测试与代码审查确认结果。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card" id="takeout">
+    <h2>项目经历（课程）</h2>
+    <div class="item">
+      <div class="item-head">
+        <h3>外卖点单与后台管理系统</h3>
+        <span class="period">大二小学期 · 团队项目（组长）</span>
+      </div>
+      <p class="meta">前端代码：<a href="https://github.com/hexinlong9981/fast_bite">github.com/hexinlong9981/fast_bite</a></p>
+      <p>
+        面向餐饮企业的外卖平台。后台管理系统支持员工、菜品、套餐管理；微信小程序端支持浏览菜品、加入购物车和下单。
+        担任组长，负责从需求分析、系统设计、编码、测试到部署的全过程。
+      </p>
+      <ul class="tags">
+        <li>Spring Boot</li><li>MyBatis</li><li>MySQL</li><li>Redis</li><li>Nginx</li><li>WebSocket</li><li>JWT</li><li>Vue</li><li>uni-app</li>
+      </ul>
+      <ul class="points">
+        <li>用 JWT 实现登录认证，结合自定义拦截器与 ThreadLocal 保存当前用户信息。</li>
+        <li>用 Redis 与 Spring Cache 缓存高频访问的菜品数据，减少数据库查询。</li>
+        <li>用 WebSocket 实现来单提醒与用户催单；用 Spring Task 定时取消超时未支付的订单。</li>
+        <li>用 Nginx 部署静态资源并做反向代理；用 Maven 多模块管理工程，用 Git 进行版本管理。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card" id="skills">
+    <h2>专业技能</h2>
+    <dl class="skills">
+      <dt>Java 后端</dt><dd>Java、Spring、Spring MVC、Spring Boot、MyBatis / MyBatis-Plus；了解 Spring Cloud、Spring AI</dd>
+      <dt>数据库</dt><dd>MySQL（SQL 编写、索引）、Redis（缓存）</dd>
+      <dt>测试与质量</dt><dd>JUnit、jqwik、ArchUnit、JaCoCo、Error Prone、pytest；黄金用例与端到端测试</dd>
+      <dt>部署与运维</dt><dd>Linux 常用命令、Nginx、Docker、GitHub Actions、Google Cloud Run、Cloudflare Workers</dd>
+      <dt>其他语言与前端</dt><dd>Python；HTML / CSS / JavaScript、TypeScript、Vue 3、React</dd>
+      <dt>AI 应用</dt><dd>Claude / Gemini API、MCP（Model Context Protocol）、LLM 回答的评估设计</dd>
+      <dt>工具</dt><dd>Git / GitHub、Maven、Gradle、Claude Code</dd>
+      <dt>语言</dt><dd>中文（母语）、日语 N3（备考 N2）、英语 CET-4（可阅读技术文档）</dd>
+    </dl>
+  </section>
+
+  <section class="card" id="education">
+    <h2>教育背景</h2>
+    <div class="item-head">
+      <h3>新疆大学　软件工程　本科（学士）</h3>
+      <span class="period">2022.09 – 2026.06</span>
+    </div>
+    <p class="meta">主修课程：数据结构、操作系统、计算机网络、网络与信息安全、软件工程概论、离散数学、高等数学、线性代数、概率论与数理统计</p>
+  </section>
+
+  <section class="card" id="campus">
+    <h2>校园经历</h2>
+    <ul class="points">
+      <li>大二小学期担任项目组长，带领团队完成“外卖点单与后台管理系统”的开发。</li>
+      <li>担任校乒乓球社副社长，组织多次社团活动。</li>
+    </ul>
+  </section>
+
+  <section class="card" id="about">
+    <h2>自我评价</h2>
+    <ul class="points">
+      <li>喜欢动手做东西，能自己查资料、学新技术，把一个项目从零做到公开发布。</li>
+      <li>重视可靠性：先想清楚“这个结果为什么可信”，再用测试和文档把它说明白。</li>
+      <li>性格开朗，适应新环境快；喜欢球类运动，身体素质好。</li>
+      <li>从小喜欢日本的动漫和游戏，希望在日本的职场中工作和生活，正在持续学习日语。</li>
+    </ul>
+  </section>
+
+  <footer>最后更新：2026-10-17 · 本页面由 GitHub Pages 发布</footer>
+</main>
+</div>
+</body>
+</html>
