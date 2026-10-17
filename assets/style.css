@@ -76,6 +76,9 @@ main { min-width: 0; }
 .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; }
 @media (max-width: 860px) { .card { padding: 20px 18px; } }
 .hero { display: flex; gap: 24px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+.hero .photo { width: 120px; height: 148px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); flex: none; }
+.hero > div:not(.links) { flex: 1 1 280px; }
+@media (max-width: 600px) { .hero .photo { width: 96px; height: 118px; } }
 .hero h1 { margin: 0; font-size: 2rem; line-height: 1.3; }
 .hero .romaji { color: var(--muted); font-size: 1rem; font-weight: 400; margin-left: 8px; }
 .hero .role { margin: 6px 0 0; font-size: 1.1rem; color: var(--accent); font-weight: 600; }
